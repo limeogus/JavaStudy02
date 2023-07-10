@@ -1,0 +1,15 @@
+import org.junit.Test;
+
+public class CalculatorTest {
+    @Test
+    public void add(){
+        Calculator cal = new Calculator();
+        System.out.println(cal.add(6,3));
+    }
+
+    @Test
+    public void substract(){
+        Calculator cal = new Calculator();
+        System.out.println(cal.substract(6, 3));
+    }
+}
