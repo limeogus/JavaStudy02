@@ -1,47 +1,30 @@
 public class StringCalculator {
     
-    int add(String input){
+    public int add(String input){
 
-        if(input == null){
+        if(input == null || input.isEmpty()){
             return 0;
         }
-        if(input.isEmpty()){
-            return 0;
-        }
-
-        int res=0;
         
-        if(input.contains("//")){
-            int a = input.indexOf("//");
-            int b = input.indexOf("\\n");
-            String temp = input.substring(a+2,b);
-            int temp2 = input.length();
-            res = addloop(temp, input.substring(b+2, temp2));
-
-        }
-        else if(input.contains(":") && input.contains(":")){
-            input = input.replace(",",":");
-            res = addloop(":", input);
-        }
-        else if(input.contains(":")){
-            res = addloop(":", input);
-        }
-        else if(input.contains(",")){
-            res = addloop(",", input);
-        }
-        
-        return res;
+        String[] values = input.split(",");
+        return sum(toInts(values));
     }
 
-    int addloop(String name,String intput){
-        int result = 0;
-        String[] splitInput = intput.split(name);
-        
-        for(int i=0; i < splitInput.length; i++){
-            result = result + Integer.parseInt(splitInput[i]);
+    private int[] toInts(String[] values){
+        int[] numbers = new int[values.length];
+        for (int i = 0; i < values.length; i++) {
+            numbers[i] = Integer.parseInt(values[i]);
         }
 
-        return result;
+        return numbers;
+    }
+
+    private int sum(int[] numbers) {
+        int sum =0;
+        for(int number : numbers){
+            sum += number;
+        }
+        return sum;
     }
 
 }

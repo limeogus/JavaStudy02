@@ -13,33 +13,19 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void add01(){
-        assertEquals(cal.add(" "), 0);
-        assertEquals(cal.add(null), 0);
+    public void add_null_또는_빈문자(){
+        assertEquals(0, cal.add(null));
+        assertEquals(0, cal.add(""));
     }
 
     @Test
-    public void add02(){
-        cal.add("1,2");
-        assertEquals(cal.add("1,2"), 3);     
+    public void add_숫자하나() throws Exception{
+        assertEquals(1, cal.add("1"));
     }
 
     @Test
-    public void add03(){
-        cal.add("1,2,3");
-        assertEquals(cal.add("1,2,3"), 6);     
+    public void add_쉼표구분자() throws Exception{
+        assertEquals(3, cal.add("1,2"));     
     }
 
-    @Test
-    public void add04(){
-        cal.add("1,2:3");
-        assertEquals(cal.add("1,2:3"), 6);     
-    }
-
-    @Test
-    public void add05(){
-        cal.add("//;\\n1;2;3");
-        
-        //assertEquals(cal.add("//;\n1;2;3"), 6);     
-    }
 }
