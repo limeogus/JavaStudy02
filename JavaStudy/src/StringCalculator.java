@@ -1,13 +1,30 @@
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     
     public int add(String input){
 
-        if(input == null || input.isEmpty()){
+        if(isBlank(input)) {
             return 0;
         }
+        return sum(toInts(split(input)));
+    }
+
+    private boolean isBlank(String input) {
+
+        return input == null || input.isEmpty();
+    }
+
+    private String[] split(String input) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if(m.find()){
+            String customDelimehter = m.group(1);
+            return m.group(2).split(customDelimehter);
+        }
         
-        String[] values = input.split(",");
-        return sum(toInts(values));
+        return input.split(",|:");
     }
 
     private int[] toInts(String[] values){
